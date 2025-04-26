@@ -13,6 +13,7 @@ import {
 
 export default function Overview() {
   const [hobby, setHobby] = useState('');
+  const [describe, setDescribe] = useState('');
 
 
 
@@ -36,6 +37,16 @@ export default function Overview() {
           style={styles.formInput}
           value={hobby}
           onChangeText={setHobby}
+        />
+
+        {/* Hobby Description */}
+        <Text style={styles.subFormTitle}>Hobby Description</Text>
+        <TextInput
+          placeholder="e.g. Read 10 pages a day"
+          placeholderTextColor="#999"
+          style={styles.formInput}
+          value={describe}
+          onChangeText={setDescribe}
         />
 
         {/* End Date */}
