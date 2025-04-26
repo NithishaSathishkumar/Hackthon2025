@@ -12,6 +12,7 @@ import MyTasks from './Screen/mytasks';
 const Stack = createNativeStackNavigator();
 
 
+
 function HomeScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
@@ -37,6 +38,8 @@ function HomeScreen({ navigation }) {
     </SafeAreaView>
   );
 }
+
+
 
 export default function App() {
   return (

@@ -6,32 +6,22 @@ import {
   View,
   SafeAreaView,
   TextInput,
-  Platform,
   StyleSheet,
+  Alert
 } from 'react-native';
-import DateTimePicker from '@react-native-community/datetimepicker';
-import { Alert } from 'react-native';
+
 
 export default function Overview() {
   const [hobby, setHobby] = useState('');
-  const [endDate, setEndDate] = useState<Date | null>(null);
-  const [showPicker, setShowPicker] = useState(false);
+
+
 
   // Wager state
   const [wagerType, setWagerType] = useState<'money' | 'other' | null>(null);
   const [wagerAmount, setWagerAmount] = useState('');
+  const [durationDays, setDurationDays] = useState('');
   const [wagerOther, setWagerOther] = useState('');
 
-  const onChange = (_: any, selectedDate?: Date) => {
-    setShowPicker(Platform.OS === 'ios');
-    if (selectedDate) setEndDate(selectedDate);
-  };
-
-  const daysDiff = endDate
-    ? Math.ceil(
-        (endDate.getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24)
-      )
-    : null;
 
   return (
     <SafeAreaView style={styles.wrapper}>
@@ -49,31 +39,17 @@ export default function Overview() {
         />
 
         {/* End Date */}
-        <Text style={styles.subFormTitle}>End Date</Text>
-        <TouchableOpacity
-          style={styles.formInput}
-          onPress={() => setShowPicker(true)}
-        >
-          <Text style={endDate ? styles.dateText : styles.placeholderText}>
-            {endDate
-              ? endDate.toLocaleDateString()
-              : 'Tap to select end date'}
-          </Text>
-        </TouchableOpacity>
-        {showPicker && (
-          <DateTimePicker
-            value={endDate ?? new Date()}
-            mode="date"
-            display="calendar"
-            onChange={onChange}
-            minimumDate={new Date()}
+        <Text style={styles.subFormTitle}>Duration</Text>
+    
+          <TextInput keyboardType = "numeric" style={styles.formInput} 
+            onChangeText={setDurationDays}
+            value={durationDays}
+            placeholder="Enter number of days"
+            placeholderTextColor="#999"
+
           />
-        )}
-        {daysDiff !== null && (
-          <Text style={styles.result}>
-            {daysDiff} day{daysDiff === 1 ? '' : 's'} from today
-          </Text>
-        )}
+        
+
 
         {/* Wager selector */}
         <Text style={styles.subFormTitle}>Wager</Text>
