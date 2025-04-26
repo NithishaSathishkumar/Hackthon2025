@@ -8,7 +8,6 @@ import {
   View,
   Image,
   Dimensions,
-  SafeAreaView,
 } from 'react-native';
 import * as MediaLibrary from 'expo-media-library';
 

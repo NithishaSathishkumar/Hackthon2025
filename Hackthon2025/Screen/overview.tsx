@@ -150,13 +150,13 @@ export default function Overview() {
               pressed && styles.actionButtonPressed,
             ]}
             onPress={() => {
-              /* next action */
+              
             Alert.alert(
                 "Disclaimer",
                 "PLACE HOLDER NAME is made with the intention of keeping you accountable, currently it's easy to cheat, please only create matches with people you trust. We are not responsible for any loss of money or other consequences that may arise from using this app.",
                 [
                     { text: "Deny", onPress: () => console.log("User denied") },
-                    { text: "Accept", onPress: () => console.log("User accepted") },
+                    { text: "Accept", onPress: () => console.log("User accepted") }, /* next action */
                 ]
             );
             }}

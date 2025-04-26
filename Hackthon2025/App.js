@@ -7,6 +7,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from './Screen/login';
 import CameraApp from './Screen/camera';
 import Overview from './Screen/overview';
+import MyTasks from './Screen/mytasks';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,8 +27,13 @@ function HomeScreen({ navigation }) {
       <Button
         title="Go to Overview"
         onPress={() => navigation.navigate('Overview')}
-        
       />
+
+      <Button
+        title="Go to My Tasks"
+        onPress={() => navigation.navigate('MyTasks')}
+      />
+
     </SafeAreaView>
   );
 }
@@ -43,6 +49,7 @@ export default function App() {
         <Stack.Screen name="Camera" component={CameraApp} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Overview" component={Overview} />
+        <Stack.Screen name="MyTasks" component={MyTasks} />
         {/* register more screens here */}
         
       </Stack.Navigator>
