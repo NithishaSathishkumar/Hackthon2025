@@ -1,18 +1,23 @@
-import { Text, TextInput, View, StyleSheet, SafeAreaView } from "react-native";
+// login.js
+import React from 'react';
+import { View, Text, Button, StyleSheet } from 'react-native';
 
-function Login() {
+export default function Login({ navigation }) {
   return (
-    <SafeAreaView style={styles.container}>
-      <Text>Login</Text>
-    </SafeAreaView>
+    <View style={styles.container}>
+      <Text>Welcome! Please log in.</Text>
+      <Button
+        title="Go to Camera"
+        onPress={() => navigation.navigate('Camera')}
+      />
+    </View>
   );
-} 
-
-export default Login;
+}
 
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: 'red',
-
-    },
+  container: {
+    flex: 1,                     // ← full screen
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
