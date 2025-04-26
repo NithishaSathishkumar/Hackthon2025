@@ -1,9 +1,12 @@
 import axios from 'axios';
+import React from 'react';
 import { useContext, useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { StyleSheet, Text, View, Button, SafeAreaView } from 'react-native';
 import { AuthContext } from '../store/auth-context';
 
-function WelcomeScreen() {
+function WelcomeScreen({navigation}) {
   const [fetchedMessage, setFetchedMessage] = useState('');
   const authCTx = useContext(AuthContext);
   const token = authCTx.token;
@@ -17,11 +20,30 @@ function WelcomeScreen() {
   }, [token]);
   
   return (
-    <View style={styles.rootContainer}>
-      <Text style={styles.title}>Welcome!</Text>
-      <Text>You authenticated successfully!</Text>
-      <Text>{fetchedMessage}</Text>
-    </View>
+    // <View style={styles.rootContainer}>
+    //   <Text style={styles.title}>Welcome!</Text>
+    //   <Text>You authenticated successfully!</Text>
+    //   <Text>{fetchedMessage}</Text>
+    // </View>
+    <SafeAreaView style={styles.container}>
+      <Button
+        title="Go to Camera"
+        onPress={() => navigation.navigate('Camera')}
+      />
+      <Button
+        title="Go to Overview"
+        onPress={() => navigation.navigate('Overview')}
+      />
+      <Button
+        title="Go to My Tasks"
+        onPress={() => navigation.navigate('MyTasks')}
+      />
+      <Button
+        title="Go to Challenge Start"
+        onPress={() => navigation.navigate('ChallengeStart')}
+      />
+
+    </SafeAreaView>
   );
 }
 
