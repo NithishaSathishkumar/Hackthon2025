@@ -1,6 +1,8 @@
 import { SafeAreaView, StyleSheet, Text, View, TouchableOpacity, FlatList, Button, Image } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import dayjs from "dayjs";
+
+
 
 const todayDate = dayjs().format('YYYY-MM-DD');
 
@@ -11,9 +13,10 @@ const habitsData = [
   { id: "3", title: "Code 1 Hour", days: 50, startDate: todayDate },
 ];
 
-function MyTasks() {
+export default function MyTasks({navigation}) {
   const [expandedId, setExpandedId] = useState(null);
   const [habitProgress, setHabitProgress] = useState({});
+  const [useRef, setUseRef] = useState(null);
 
   const handleExpand = (id) => {
     setExpandedId(expandedId === id ? null : id);
@@ -155,7 +158,7 @@ function MyTasks() {
             </View>
 
             <View style={{ marginTop: 5 }}>
-              <Button title="📷 Take a Photo" onPress={() => console.log("Take Photo Pressed")} />
+              <Button title="📷 Take a Photo" onPress={() => navigation.navigate("Camera")} />
             </View>
 
             <View style={styles.buttonRow}>
@@ -181,7 +184,6 @@ function MyTasks() {
   );
 }
 
-export default MyTasks;
 
 const styles = StyleSheet.create({
   container: {
