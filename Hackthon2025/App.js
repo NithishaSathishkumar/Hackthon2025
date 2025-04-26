@@ -1,21 +1,58 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, SafeAreaView } from 'react-native';
+// App.js
+import React from 'react';
+import { Button, SafeAreaView, StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 import Login from './Screen/login';
+import CameraApp from './Screen/camera';
+import Overview from './Screen/overview';
+
+const Stack = createNativeStackNavigator();
+
+
+function HomeScreen({ navigation }) {
+  return (
+    <SafeAreaView style={styles.container}>
+      <Button
+        title="Go to Camera"
+        onPress={() => navigation.navigate('Camera')}
+      />
+      <Button
+        title="Go to Login"
+        onPress={() => navigation.navigate('Login')}
+      />
+      {/* add more buttons for other screens */}
+      <Button
+        title="Go to Overview"
+        onPress={() => navigation.navigate('Overview')}
+        
+      />
+    </SafeAreaView>
+  );
+}
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.container}>
-       <Login/>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName="Home"
+        screenOptions={{ headerTitleAlign: 'center' }}
+      >
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Camera" component={CameraApp} />
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Overview" component={Overview} />
+        {/* register more screens here */}
+        
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
