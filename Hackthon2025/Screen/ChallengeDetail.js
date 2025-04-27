@@ -12,7 +12,6 @@ export default function ChallengeDetail({ navigation }) {
 
     const handleConfirm = () => {
         alert(`You selected ${selectedOpponent} as your opponent and ${selectedJudge} as your judge.`);
-        // navigation.navigate('NextPage');
     };
 
     return (

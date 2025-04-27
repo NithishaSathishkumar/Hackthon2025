@@ -7,10 +7,10 @@ import AuthForm from './AuthForm';
 import { Colors } from '../../constants/styles';
 
 function AuthContent({ isLogin, onAuthenticate }) {
-
   const navigation = useNavigation();
 
   const [credentialsInvalid, setCredentialsInvalid] = useState({
+    username: false,
     email: false,
     password: false,
     confirmEmail: false,
@@ -26,23 +26,27 @@ function AuthContent({ isLogin, onAuthenticate }) {
   }
 
   function submitHandler(credentials) {
-    let { email, confirmEmail, password, confirmPassword } = credentials;
+    let { username, email, confirmEmail, password, confirmPassword } = credentials;
 
+    username = username ? username.trim() : ''; // 👈 Always safe check
     email = email.trim();
     password = password.trim();
 
+    const usernameIsValid = username.length > 3; // 👈 Basic check (at least 3 letters)
     const emailIsValid = email.includes('@');
     const passwordIsValid = password.length > 6;
     const emailsAreEqual = email === confirmEmail;
     const passwordsAreEqual = password === confirmPassword;
 
     if (
+      (!isLogin && !usernameIsValid) ||
       !emailIsValid ||
       !passwordIsValid ||
       (!isLogin && (!emailsAreEqual || !passwordsAreEqual))
     ) {
       Alert.alert('Invalid input', 'Please check your entered credentials.');
       setCredentialsInvalid({
+        username: !usernameIsValid,
         email: !emailIsValid,
         confirmEmail: !emailIsValid || !emailsAreEqual,
         password: !passwordIsValid,
@@ -50,7 +54,8 @@ function AuthContent({ isLogin, onAuthenticate }) {
       });
       return;
     }
-    onAuthenticate({ email, password });
+
+    onAuthenticate({ username, email, password }); // 👈 Send username along!
   }
 
   return (
