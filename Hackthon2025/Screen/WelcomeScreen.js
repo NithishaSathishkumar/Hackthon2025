@@ -35,7 +35,7 @@ function WelcomeScreen({ navigation }) {
       });
   };
 
-  // Function to fetch data from Firebase
+  //Function to fetch data from Firebase
   const fetchDataFromFirebase = () => {
     axios
       .get('https://hackthon2025-8a00c-default-rtdb.firebaseio.com/User.json?auth=' + token)
@@ -47,7 +47,7 @@ function WelcomeScreen({ navigation }) {
       });
   };
 
-  // Fetch data when the component is mounted
+  //Fetch data when the component is mounted
   useEffect(() => {
     fetchDataFromFirebase();
   }, [token]);
@@ -67,16 +67,6 @@ function WelcomeScreen({ navigation }) {
       resizeMode="contain"
     >
       <SafeAreaView style={styles.container}>
-        {/* Text input to enter new message */}
-        <TextInput
-          style={styles.input}
-          placeholder="Enter a new message"
-          value={newMessage}
-          onChangeText={setNewMessage}
-          onSubmitEditing={handleSubmit} // Trigger the handleSubmit when Enter is pressed
-        />
-
-      <Text>{JSON.stringify(fetchedMessage)}</Text>
 
         {/* Button to add new data */}
         <Button title="Add Data to Firebase" onPress={addDataToFirebase} />
