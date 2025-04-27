@@ -17,7 +17,7 @@ function SignupScreen() {
     try {
       const { token, data } = await createUser(email, password); // createUser still only needs email/password
       const uid = data.localId;
-      
+
       authCtx.authenticate(token);
 
       const newData = {
